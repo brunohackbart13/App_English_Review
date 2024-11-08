@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Adicionar - English Review</title>
+    
+    <!-- Bootstrap (apenas uma versão) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mt-5">Adicione um termo e uma frase em nossa base de dados</h1>
+        
+        <ul id="palavrasList"></ul>
+        <hr>
+        
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <form id="addForm">
+                    <div class="form-group">
+                        <label for="inputPalavra">Palavra</label>
+                        <input type="text" class="form-control" id="palavra" required placeholder="Palavra">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputFrase">Frase</label>
+                        <input type="text" class="form-control" id="frase" required placeholder="Frase">
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary btn-block">Adicionar</button>
+                </form>
+                <div class="text-center mt-3">
+                    <!-- Botão Home com estilo 'outline-light' -->
+                    <a href="index.html" class="btn btn-outline-secondary btn-block">Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/real-time-database.js"></script>
+</body>
+</html>
