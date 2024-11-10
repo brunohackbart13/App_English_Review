@@ -7,7 +7,7 @@ const firebaseConfig = {
   authDomain: "english-app-review.firebaseapp.com",
   databaseURL: "https://english-app-review-default-rtdb.firebaseio.com",
   projectId: "english-app-review",
-  storageBucket: "english-app-review.firebasestorage.app",
+  storageBucket: "english-app-review.appspot.com",
   messagingSenderId: "330130642018",
   appId: "1:330130642018:web:0f8feb21aedb098f08ad3b"
 };
@@ -15,3 +15,4 @@ const firebaseConfig = {
 // Inicializa o Firebase
 firebase.initializeApp(firebaseConfig);
 console.log("Firebase foi inicializado com sucesso");
+
