@@ -12,7 +12,7 @@ createUserButton.addEventListener('click', function () {
         .then(function () {
             alert('Conta criada com sucesso!\nBem-vindo, ' + emailInput.value);
             // Redireciona para a tela de adicionar palavras
-            window.location.href = "adicionar.html";
+            window.location.href = "real-time-database.html";
         })
         .catch(function (error) {
             console.error(error.code);
