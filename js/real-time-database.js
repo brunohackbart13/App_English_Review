@@ -16,15 +16,18 @@ function create(palavra, frase) {
         palavra: palavra,
         frase: frase
     };
-    return firebase.database().ref('Palavras').push(data);
+
+    firebase.database().ref('Palavras').push(data)
+        .then(function () {
+            // Exibe mensagem de sucesso
+            alert('✅ Palavra e frase adicionadas com sucesso!');
+            // Limpa os campos
+            inputPalavra.value = '';
+            inputFrase.value = '';
+            inputPalavra.focus();
+        })
+        .catch(function (error) {
+            console.error('Erro ao adicionar:', error);
+            alert('❌ Erro ao adicionar. Verifique o console para mais detalhes.');
+        });
 }
-
-
-//firebase.database().ref('Palavras').on('value', function(snapshot) {
-  //  palavrasList.innerHTML = '';
-    //snapshot.forEach(function(item) {
-      //  var li = document.createElement('li');
-        //li.appendChild(document.createTextNode(item.val().palavra + ': ' + item.val().frase));
-      //  palavrasList.appendChild(li);
-//    });
-//});
