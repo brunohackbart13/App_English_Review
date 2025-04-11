@@ -1,4 +1,4 @@
-# 🇬🇧 English Review APP
+# English Review APP
 
 O **English Review** é um aplicativo web criado para ajudar estudantes a armazenar e revisar palavras e frases em inglês com suas respectivas traduções em português. Ideal para quem está construindo vocabulário e quer acompanhar seu progresso ao longo do tempo.
 
