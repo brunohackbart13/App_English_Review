@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>English Review</title>
 
   <!-- Bootstrap CSS -->
@@ -10,52 +10,45 @@
   <link rel="stylesheet" href="/css/styles.css">
 
   <style>
-    .hero {
+    .imagem-container {
       position: relative;
-      background-image: url('img/english-banner.jpg'); /* substitua pela sua imagem */
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
+      display: inline-block;
+      max-width: 100%;
     }
 
-    .login-box {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 30px;
-      border-radius: 15px;
-      max-width: 400px;
+    .imagem-container img {
       width: 100%;
+      max-width: 500px; /* aumente o tamanho aqui */
+      height: auto;
+      border-radius: 10px;
     }
 
-    .login-box h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    @media (max-width: 768px) {
-      .hero {
-        height: 80vh;
-      }
+    .botao-login {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1 class="text-center mt-5">Bem-vindo ao English Review APP!</h1>
 
-  <div class="hero">
-    <div class="login-box">
-      <h1>English Review</h1>
-      <p>Aprenda e revise palavras em inglês com facilidade.</p>
-      <a href="real-time-database.html" class="btn btn-light btn-block mt-3">Entrar</a>
+    <div class="text-center mt-4">
+      <!-- Imagem com botão sobreposto -->
+      <div class="imagem-container">
+        <img src="App.png" alt="Imagem do App" class="img-fluid">
+        <div class="botao-login">
+          <button class="btn btn-outline-light btn-sm" onclick="window.location.href='login.html'">Login</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/real-time-database.js"></script>
 </body>
 </html>
