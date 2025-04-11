@@ -9,10 +9,20 @@ createUserButton.addEventListener('click', function () {
     firebase
         .auth()
         .createUserWithEmailAndPassword(emailInput.value, passwordInput.value)
-        .then(function () {
-            alert('Conta criada com sucesso!\nBem-vindo, ' + emailInput.value);
-            // Redireciona para a tela de adicionar palavras
-            window.location.href = "real-time-database.html";
+        .then(function (userCredential) {
+            const user = userCredential.user;
+
+            // Envia o e-mail de verificação
+            user.sendEmailVerification()
+                .then(function () {
+                    alert('✅ Conta criada com sucesso!\nFoi enviado um e-mail para verificação: ' + emailInput.value);
+                    // Redireciona para a tela de adicionar palavras
+                    window.location.href = "real-time-database.html";
+                })
+                .catch(function (error) {
+                    console.error('Erro ao enviar e-mail de verificação:', error);
+                    alert('⚠️ Conta criada, mas não foi possível enviar o e-mail de verificação.');
+                });
         })
         .catch(function (error) {
             console.error(error.code);
@@ -27,10 +37,17 @@ authEmailPassButton.addEventListener('click', function () {
         .auth()
         .signInWithEmailAndPassword(emailInput.value, passwordInput.value)
         .then(function (result) {
-            console.log(result);
-            alert('✅ Autenticado com sucesso: ' + emailInput.value);
-            // Redireciona para a tela de adicionar palavras
-            window.location.href = "real-time-database.html";
+            const user = result.user;
+
+            // Verifica se o e-mail foi confirmado
+            if (user.emailVerified) {
+                alert('✅ Autenticado com sucesso: ' + emailInput.value);
+                // Redireciona para a tela de adicionar palavras
+                window.location.href = "real-time-database.html";
+            } else {
+                alert('⚠️ E-mail ainda não verificado. Por favor, verifique sua caixa de entrada.');
+                firebase.auth().signOut();
+            }
         })
         .catch(function (error) {
             console.error(error.code);
