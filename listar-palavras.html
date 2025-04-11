@@ -41,7 +41,7 @@
     <script>
         const tabela = document.getElementById("tabela-palavras");
 
-        firebase.database().ref("termos").on("value", function(snapshot) {
+        firebase.database().ref("Palavras").on("value", function(snapshot) {
             tabela.innerHTML = ""; // limpa antes de preencher
 
             snapshot.forEach(function(childSnapshot) {
@@ -50,11 +50,11 @@
                 const tr = document.createElement("tr");
                 tr.innerHTML = `
                     <td>${item.palavra}</td>
-                    <td>${item.traducao}</td>
+                    <td>${item.frase}</td>
                 `;
                 tabela.appendChild(tr);
             });
         });
     </script>
 </body>
-</html
+</html>
