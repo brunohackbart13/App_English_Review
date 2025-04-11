@@ -6,22 +6,20 @@ var passwordInput = document.getElementById('passwordInput');
 
 // Criar nova conta
 createUserButton.addEventListener('click', function () {
-    firebase
-        .auth()
+    firebase.auth()
         .createUserWithEmailAndPassword(emailInput.value, passwordInput.value)
         .then(function (userCredential) {
-            const user = userCredential.user;
+            var user = userCredential.user;
 
-            // Envia o e-mail de verificação
             user.sendEmailVerification()
                 .then(function () {
-                    alert('✅ Conta criada com sucesso!\nFoi enviado um e-mail para verificação: ' + emailInput.value);
-                    // Redireciona para a tela de adicionar palavras
-                    window.location.href = "real-time-database.html";
+                    alert('✅ Conta criada com sucesso!\nEnviamos um e-mail de verificação para: ' + emailInput.value + '\n\nVerifique seu e-mail antes de fazer login.');
+                    // Desloga o usuário para evitar acesso antes da verificação
+                    firebase.auth().signOut();
                 })
                 .catch(function (error) {
                     console.error('Erro ao enviar e-mail de verificação:', error);
-                    alert('⚠️ Conta criada, mas não foi possível enviar o e-mail de verificação.');
+                    alert('⚠️ Não foi possível enviar o e-mail de verificação.');
                 });
         })
         .catch(function (error) {
@@ -33,19 +31,16 @@ createUserButton.addEventListener('click', function () {
 
 // Login com e-mail e senha
 authEmailPassButton.addEventListener('click', function () {
-    firebase
-        .auth()
+    firebase.auth()
         .signInWithEmailAndPassword(emailInput.value, passwordInput.value)
         .then(function (result) {
-            const user = result.user;
+            var user = result.user;
 
-            // Verifica se o e-mail foi confirmado
             if (user.emailVerified) {
-                alert('✅ Autenticado com sucesso: ' + emailInput.value);
-                // Redireciona para a tela de adicionar palavras
+                alert('✅ Autenticado com sucesso: ' + user.email);
                 window.location.href = "real-time-database.html";
             } else {
-                alert('⚠️ E-mail ainda não verificado. Por favor, verifique sua caixa de entrada.');
+                alert('⚠️ E-mail ainda não verificado. Verifique sua caixa de entrada e confirme antes de continuar.');
                 firebase.auth().signOut();
             }
         })
